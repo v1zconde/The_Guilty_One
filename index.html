@@ -14,30 +14,85 @@
     <div class="container">
       <div class="jumbotron">
         <header>Marvel</header>
-        <h1>New York Times API</h1>
+        <h1></h1>
       </div>
-    </div>
-    <div class = container>
-      <label for="parameters">Search Parameters</label>
+    </div> 
+    <form method="GET" id="my_form"></form>
+
+    <div id="calc_form">
+      <p>This calculator provides body mass index (BMI) and the corresponding BMI weight status category for adults 20 years and older.</p>
+      <div class="w-md-col8"><div class="card mb-3"><div class="card-header h4 bg-primary">Adult BMI Calculator</div><div class="card-body bg-white"><p style=" text-align: right;"></p>
+      <div class="divrow">
+      <div class="divcell numeric"></div>
+      <div class="divcell">
+      <fieldset><strong>1. Height:</strong></fieldset>
+      <ul class="horizontal nomarker nobox fieldset">
+      <li>
+      <div class="divtable">
+      <div class="divrow">
+      <div class="divcell"><label for="feet">Feet</label></div>
+      </div>
+      <div class="divrow">
+      <div class="divcell"><input id="feet" maxlength="1" name="feet" size="1" style=" width: 5em !important;" tabindex="1" type="text"></div>
+      </div>
+      </div>
+      </li>
+      <li>
+      <div class="divtable">
+      <div class="divrow">
+      <div class="divcell"><label for="inches">Inches</label></div>
+      </div>
+      <div class="divrow">
+      <div class="divcell"><input id="inches" maxlength="5" name="inches" size="4" style=" width: 5em !important;" tabindex="2" type="text"></div>
+      </div>
+      </div>
+      </li>
+      </ul>
+      <div class="spacer"></div>
+      </div>
+      </div>
+      <div class="divrow">
+      <div class="divcell numeric"></div>
+      <div class="divcell">
+      <fieldset><strong>2. Weight:</strong></fieldset>
+      <ul class="horizontal nomarker nobox fieldset">
+      <li>
+      <div class="divtable">
+      <div class="divrow">
+      <div class="divcell"><label for="pounds">Pounds</label></div>
+      </div>
+      <div class="divrow">
+      <div class="divcell"><input id="pounds" maxlength="6" name="pounds" size="6" style=" width: 5em !important;" tabindex="3" type="text"></div>
+      </div>
+      </div>
+      </li>
+      </ul>
+      <div class="spacer"></div>
+      </div>
+      </div>
       <div class="form-group">
-        <label for="searchTerm">Search Term:</label>
-        <input type="text" class="form-control" id="searchTerm">
+        <p>What are you going to eat?</p>
+        <label for="food">Food:</label>
+        <input type="text" class="form-control" id="food">
       </div>
-      <div class="form-group">
-        <label for="records">Number of Records to Retrieve:</label>
-        <input type="number" class="form-control" id="recNum">
+      <div class="stats">
+        <div class="row"></div>
+          <div class="col-md-6">
+            <p>Calories: </p>
+            <p>Fat, Carbs, Protien</p>
+          </div>
+          <div class="col-md-6">
+            <h1>Exercise</h1>
+            <p>Choice 1</p>
+            <p>Choice 2</p>
+            <p>Choice 3</p>
+          </div>
       </div>
-      <div class="form-group">
-        <label for="startYear">Start Year (Optional):</label>
-        <input type="number" class="form-control" id="startYear">
+      <div class="videos">
+        <div class="row"></div>
+          <div class="col-md-6">Video 1</div>
+          <div class="col-md-6">Video 2</div>
       </div>
-      <div class="form-group">
-        <label for="endYear">End Year (Optional):</label>
-        <input type="number" class="form-control" id="endYear">
-      </div>
-    </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
