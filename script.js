@@ -1,13 +1,14 @@
-    var searchKey = "LzVKbVcvXGbZGv50rz7l8WwBMqFGcT50"
+$(document).ready(function () {
   
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=election&api-key=" + searchKey
+    var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
+  
+    var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=orlando&appid=" + weatherKey
 
     $.ajax({
-      url: queryURL,
+      url: weatherURL,
       method: "GET"
-    }).then(function(response) {
-      
-      console.log(response);
+    }).then(function(weatherAPi) {
+      console.log(weatherAPi);
     });
   
 
@@ -25,6 +26,6 @@
       console.log(response);
     });
 
+var youtubeKey = "AIzaSyDqKuO43bR2rpGY_lJE6QlWQ39tCXUBLqQ";
 
-    var youtubeKey = "AIzaSyDqKuO43bR2rpGY_lJE6QlWQ39tCXUBLqQ";
-    test
+  });
