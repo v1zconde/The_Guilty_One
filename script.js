@@ -2,7 +2,8 @@ $(document).ready(function () {
 
 weather();
 nutritionix();
-// youtube();
+youtube();
+bmiCalc();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -53,7 +54,29 @@ nutritionix();
         });
        }
   
+function bmiCalc(){
 
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://bmi.p.rapidapi.com/",
+    "method": "POST",
+    "headers": {
+      "x-rapidapi-host": "bmi.p.rapidapi.com",
+      "x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982",
+      "content-type": "application/json",
+      "accept": "application/json"
+    },
+    "processData": false,
+    "data": "{\"weight\":{\"value\":\"85.00\",\"unit\":\"kg\"},\"height\":{\"value\":\"170.00\",\"unit\":\"cm\"},\"sex\":\"m\",\"age\":\"24\",\"waist\":\"34.00\",\"hip\":\"40.00\"}"
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+
+
+}
 
 
   });
