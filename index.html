@@ -27,10 +27,11 @@
     </div>
   </div>
 
-  <div class="panel callout radius">
-    <article class="panel callout radius">
+
+    <div class="panel callout radius">
+    <section class="panel callout radius">
       <div class="row">
-        <div class="small-6 medium-6 large-6 columns">
+        <section class="small-6 medium-6 large-6 columns">
           <div class="row">
             <div class="small-6 medium-6 large-12 columns">
               <h3>Question about weight</h3>
@@ -76,83 +77,92 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div class="small-6 medium-6 large-6 columns">
+        <section class="small-6 medium-6 large-6 columns">
           <h3>BMI:</h3>
           <div id="bmi-results"></div>
-        </div>
+        </section>
       </div>
-    </article>
+    </section>
 
-    <article class="panel callout radius">
+    <section class="panel callout radius">
       <div class="row">
         <div class="columns">
           <h3>What are you going to consume:</h3>
-          <div class="small-12 medium-12 large-2 columns">
-            <label>Search Food:
-              <input id="food-search"type="text" placeholder="Food" />
+          <div class="small-12 medium-6 large-2 columns">
+            <label>
+              Search Food:
+              <input type="text" placeholder="Food" />
             </label>
-            <label>From:
-              <input id="place-input"type="text" placeholder="From" />
+            <label>
+              From:
+              <input type="text" placeholder="From" />
             </label>
           </div>
-          <div class="columns">
-            <div id="food-btn"class="button">Submit</div>
+          <div class="small-12 medium-6 large-2 columns">
+            <div class="button">Submit</div>
           </div>
         </div>
       </div>
-    </article>
-    <article class="panel callout radius">
-      <div class="row">
-        <div class="small-6 large-6 columns">
-          <h3>Nutrional Facts</h3>
-          <div class="columns">
-            <div id="calories" class="div">Calories:</div>
-            <div id="carbs" class="div">Carb:</div>
-            <div id="totalfat" class="div">Total Fat:</div>
-            <div id="totalfat" class="div">Cholesterol:</div>
-            <div id="totalfat" class="div">Total Fat:</div>
+    </section>
+      <section class="panel callout radius">
+        <div class="row">
+          <section class="small-6 large-6 columns">
+            <h3>Nutrional Facts</h3>
+            
+              <div id="calories" class="div">Calories:</div>
+              <div id="carbs" class="div">Carb:</div>
+              <div id="totalfat" class="div">Total Fat:</div>
+              <div id="totalfat" class="div">Cholesterol:</div>
+              <div id="totalfat" class="div">Total Fat:</div>
+           
+          </section>
+          <section class="small-6 large-6 columns">
+            <h3>Excecise:</h3>
+            <!-- need to put some space between the header and the list -->
+            <ul>
+              <li>Run:</li>
+              <li>Squats:</li>
+              <li>Bicycle:</li>
+              <li>Swimming:</li>
+            </ul>
+          </section>
+        </div>
+      </section>
+
+      <section class="panel callout radius">
+        <div class="row text-center" id="youtube-videos">
+          <h3>Youtube Videos</h3>
+          <div class="small-2 medium-3 large-4 columns">
+            <p>Video 1</p>
+          </div>
+          <div class="small-2 medium-3 large-4 columns">
+            <p>Video 2</p>
           </div>
         </div>
-        <div class="small-6 large-6 columns">
-          <h3>Excecise:</h3>
-          <!-- need to put some space between the header and the list -->
-          <ul>
-            <li>Run:</li>
-            <li>Squats:</li>
-            <li>Bicycle:</li>
-            <li>Swimming:</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="panel callout radius">
-      <div class="row" id="youtube-videos">
-        <div class="small-2 medium-3 large-4 columns">
-          <p>Video 1</p>
-        </div>
-        <div class="small-2 medium-3 large-4 columns">
-          <p>Video 2</p>
-        </div>
-      </div>
-    </article>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-  <script src="https://apis.google.com/js/api.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-  <script src="./assets/js/script.js"></script>
-</body>
-
+      </section>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+  </body>
 </html>
+
