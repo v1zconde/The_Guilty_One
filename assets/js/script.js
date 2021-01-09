@@ -3,7 +3,8 @@ $(document).ready(function () {
 weather();
 nutritionix();
 youtube();
-bmiCalc();
+exercise();
+bmi();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -19,30 +20,13 @@ bmiCalc();
   
   }
 
-
-    function nutritionix(){
-      var appKey = "64294de991310089661a16d9cd168ca1"
-      var appId = "8e63a8a3"
-      var query = "cookies" //$("#food").val();
-      
-      var queryURL = "https://api.nutritionix.com/v1_1/search/" +query+ "?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat&appId=" + appId + "&appKey=" + appKey
-      
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
-        
-        console.log(response);
-      });
-  
-    }
   
    function youtube(){
     
      var youtubeKey = "AIzaSyDqKuO43bR2rpGY_lJE6QlWQ39tCXUBLqQ";
      var query = "how to run";
      var maxResults = "&maxResults=2"
-     var type = "&type=videos"
+     //var type = "&type=videos"
   
         var queryURL = "https://www.googleapis.com/youtube/v3/videos?id=" +query+ "&key=" + youtubeKey +"&part=snippet" + maxResults
       
@@ -53,30 +37,94 @@ bmiCalc();
           console.log(response);
         });
        }
-  
-function bmiCalc(){
-
-  var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://bmi.p.rapidapi.com/",
-    "method": "POST",
-    "headers": {
-      "x-rapidapi-host": "bmi.p.rapidapi.com",
-      "x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982",
-      "content-type": "application/json",
-      "accept": "application/json"
-    },
-    "processData": false,
-    "data": "{\"weight\":{\"value\":\"85.00\",\"unit\":\"kg\"},\"height\":{\"value\":\"170.00\",\"unit\":\"cm\"},\"sex\":\"m\",\"age\":\"24\",\"waist\":\"34.00\",\"hip\":\"40.00\"}"
-  }
-  
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-  });
 
 
-}
 
-
-  });
+       function nutritionix(){
+ 
+        //var text = document.getElementById('inputlg').value;
+        var foodCalorie = "1 slice of pizza" //$("#searchCalorie").val();
+       // Ajax call to API and then appends the returned info to the food log. 
+        $.ajax({
+            url: `https://trackapi.nutritionix.com/v2/natural/nutrients`,
+            headers: {
+                "x-app-id": "8e63a8a3",
+                "x-app-key": "64294de991310089661a16d9cd168ca1",
+                "Content-Type": "application/json"
+            },
+            "type": "POST",
+            "dataType": "json",
+            "processData": false,
+            data: JSON.stringify({"query": foodCalorie}),
+            success: function(response) {
+                console.log(response)
+            }
+        });
+       
+       }
+       
+       
+       function exercise(){
+        
+         //var text = document.getElementById('inputlg').value;
+         var varExercise = "run 3 miles" //$("#searchExercise").val();
+        // Ajax call to API and then appends the returned info to the food log. 
+         $.ajax({
+             url: `https://trackapi.nutritionix.com/v2/natural/exercise`,
+             headers: {
+                 "x-app-id": "8e63a8a3",
+                 "x-app-key": "64294de991310089661a16d9cd168ca1",
+                 "Content-Type": "application/json"
+             },
+             "type": "POST",
+             "dataType": "json",
+             "processData": false,
+             data: JSON.stringify({
+               "query": varExercise,
+               "gender": "male",
+               "weight_kg": "180",
+               "height_cm": "177",
+               "age": "37"      
+             }),
+             success: function(response) {
+                 console.log(response);
+             }
+         });
+        
+        }
+       
+      //  $("#searchBtn").on("click", function(event){
+      //    event.preventDefault();
+      //    nutritionix();
+      //    exercise();
+      //    bmi();
+      //  });
+       
+       
+       
+       function bmi(){
+         var height = 170;//$("#searchHeight").val();
+         var weight = 108;//$("#searchweight").val();
+         var age = 30;//$("#searchAge").val();
+         var settings = {
+           "async": true,
+           "crossDomain": true,
+           "url":  "https://fitness-calculator.p.rapidapi.com/bmi?age=" + age+ "&height=" + height +"&weight="+ weight,
+           "method": "GET",
+           "headers": {
+             "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+             "x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982"
+           }
+         }
+         
+         $.ajax(settings).done(function (response) {
+           console.log(response);
+         });
+       }
+       
+       
+       
+       
+       
+       })
+       
