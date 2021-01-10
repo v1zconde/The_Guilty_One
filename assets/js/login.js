@@ -6,23 +6,28 @@ $(document).ready(function () {
         userNameSaved = {};
       }
 //submit button
-    $("#submitBtn").on("click", function(event) {
+    $("#signup-btn").on("click", function(event) {
         event.preventDefault();
         $("#msgError").text("");
-        var userName = $("#userInput")
+        var userName = $("#name-input")
           .val()
           .trim()
           .toLowerCase();
       
-          var userPass = $("#passInput")
+          var userEmail = $("#email-input")
           .val()
           .trim()
           .toLowerCase();
       
-        if (userName != "" && userPass != "") {
+          var userPass = $("#pass-input")
+          .val()
+          .trim()
+          .toLowerCase();
+
+        if (userName != "" && userPass != "" && userEmail != "") {
           //Check to see if there is any text entered
           
-            comparison(userName, userPass, userNameSaved);
+            comparison(userEmail, userPass, userName,userNameSaved);
 
         }
         else{
@@ -30,14 +35,15 @@ $(document).ready(function () {
         }   
 });
 
-function comparison(userName, userPass){
-    console.log(userName +" "+ userPass + " " + userNameSaved[userName]);
+function comparison(userEmail, userPass, userName){
+    console.log(userEmail +" "+ userPass + " "+ userName + " " + userNameSaved[userEmail]);
     //get all the usernames to check if it already exist
     var keys = Object.keys(userNameSaved)
-    if (keys.indexOf(userName) > -1) {
+    console.log(keys);
+    if (keys.indexOf(userEmail) > -1) {
         console.log("user already");
         //if the user is already in local storage
-        if (userPass == userNameSaved[userName]){
+        if (userPass == userNameSaved[userEmail].pass){
             console.log("im here");
             alert("you pass");
         }
@@ -46,15 +52,12 @@ function comparison(userName, userPass){
         }
      }
      else{
-        userNameSaved[userName] = userPass;
+        userNameSaved[userEmail] = {pass: userPass,
+                                    name: userName
+                                    };
         localStorage.setItem("userNameSaved", JSON.stringify(userNameSaved));
         console.log("new user login successfull")
      }
-    
-
-
 }
-
-
 
 });
