@@ -1,10 +1,16 @@
 $(document).ready(function () {
 
-weather();
-nutritionix();
-youtube();
-exercise();
-bmi();
+  var height = 170;//$("#searchHeight").val();
+  var weight = 108;//$("#searchweight").val();
+  var age = 30;//$("#searchAge").val();
+  var gender = "male";
+// weather();
+// nutritionix();
+// youtube();
+// exercise();
+// bmi();
+// dailyCalory();
+// idealWeight();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -82,9 +88,9 @@ bmi();
              data: JSON.stringify({
                "query": varExercise,
                "gender": "male",
-               "weight_kg": "180",
-               "height_cm": "177",
-               "age": "37"      
+               "weight_kg": weight,
+               "height_cm": height,
+               "age": age      
              }),
              success: function(response) {
                  console.log(response);
@@ -103,9 +109,7 @@ bmi();
        
        
        function bmi(){
-         var height = 170;//$("#searchHeight").val();
-         var weight = 108;//$("#searchweight").val();
-         var age = 30;//$("#searchAge").val();
+       
          var settings = {
            "async": true,
            "crossDomain": true,
@@ -123,8 +127,41 @@ bmi();
        }
        
        
-       
-       
-       
-       })
-       
+function idealWeight(){
+var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://fitness-calculator.p.rapidapi.com/idealweight?weight="+ weight+"&gender=" + gender +"&height="+height,
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+		"x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982"
+	}
+}
+
+$.ajax(settings).done(function (response) {
+	console.log(response);
+});
+}
+
+function dailyCalory(){
+
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "https://fitness-calculator.p.rapidapi.com/dailycalory?heigth=" + height + "&age=" + age + "&gender=" + gender+ "&weigth=" + weight,
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
+      "x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982"
+    }
+  }
+  
+  $.ajax(settings).done(function (response) {
+    console.log(response);
+  });
+
+
+}
+
+})
