@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+$(document).foundation();
   var height = 178;//$("#searchHeight").val();
   var weight = 87;//$("#searchweight").val()/2.20462;
   var age = 37;//$("#searchAge").val();
@@ -7,12 +7,11 @@ $(document).ready(function () {
   var bmiSection = $("#section-BMI");
   var listFood = $("#list-food");
 // weather();
-
 // youtube();
 // exercise();
-  // bmi();
+// bmi();
 // dailyCalory();
-  // idealWeight();
+// idealWeight();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -25,7 +24,6 @@ $(document).ready(function () {
     }).then(function(weatherAPi) {
       console.log(weatherAPi);
     });
-  
   }
 
   
@@ -190,9 +188,15 @@ $("#meal-btn").on("click", function(){
   console.log("boton");
   //var foodCalorie = $("#searchCalorie").val();
   //nutritionix(foodCalorie);
-  var newFood = $("<li>").text($("#searchCalorie").val());
-  var closeBtn = $("<button>").addClass("close-button");
+  var newFood = $("<li>").text($("#searchCalorie").val()).addClass("callout primary");
+  var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
+  var spanBtn = `<span aria-hidden="true">&times;</span>`;
+  
+  console.log(newFood);
+  console.log(closeBtn);
+  console.log(spanBtn);
   newFood.append(closeBtn);
+  closeBtn.append(spanBtn);
   listFood.append(newFood);
 
   })
