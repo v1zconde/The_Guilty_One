@@ -1,17 +1,18 @@
 $(document).ready(function () {
 
-  var height = 170;//$("#searchHeight").val();
-  var weight = 108;//$("#searchweight").val();
-  var age = 30;//$("#searchAge").val();
+  var height = 178;//$("#searchHeight").val();
+  var weight = 87;//$("#searchweight").val()/2.20462;
+  var age = 37;//$("#searchAge").val();
   var gender = "male";
   var bmiSection = $("#section-BMI");
+  var listFood = $("#list-food");
 // weather();
-// nutritionix();
+
 // youtube();
 // exercise();
- bmi();
+  // bmi();
 // dailyCalory();
- idealWeight();
+  // idealWeight();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -47,10 +48,10 @@ $(document).ready(function () {
 
 
 
-       function nutritionix(){
+       function nutritionix(foodCalorie){
  
-        //var text = document.getElementById('inputlg').value;
-        var foodCalorie = "1 slice of pizza" //$("#searchCalorie").val();
+       
+        
        // Ajax call to API and then appends the returned info to the food log. 
         $.ajax({
             url: `https://trackapi.nutritionix.com/v2/natural/nutrients`,
@@ -65,6 +66,12 @@ $(document).ready(function () {
             data: JSON.stringify({"query": foodCalorie}),
             success: function(response) {
                 console.log(response)
+
+              
+
+
+
+
             }
         });
        
@@ -146,7 +153,8 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
   console.log(response);
-  var idealWeight = $("<div>").text("Ideal Weight: " + parseInt(response.Devine));
+  var convertWeight = (response.Devine * 2.20462);
+  var idealWeight = $("<div>").text("Ideal Weight: " + parseInt(convertWeight) + " Lbs");
   bmiSection.append(idealWeight);
 });
 }
@@ -170,5 +178,24 @@ function dailyCalory(){
 
 
 }
+
+$("#userinfo-btn").on("click", function(){
+
+console.log("boton");
+
+})
+
+$("#meal-btn").on("click", function(){
+
+  console.log("boton");
+  //var foodCalorie = $("#searchCalorie").val();
+  //nutritionix(foodCalorie);
+  var newFood = $("<li>").text($("#searchCalorie").val());
+  var closeBtn = $("<button>").addClass("close-button");
+  newFood.append(closeBtn);
+  listFood.append(newFood);
+
+  })
+  
 
 })
