@@ -181,13 +181,13 @@ function dailyCalory(){
 
 $("#userinfo-btn").on("click", function(){
 
-console.log("boton");
+console.log("button");
 
 })
 
 $("#meal-btn").on("click", function(){
 
-  console.log("boton");
+  console.log("button");
   //var foodCalorie = $("#searchCalorie").val();
   //nutritionix(foodCalorie);
   var newFood = $("<li>").text($("#searchCalorie").val());
