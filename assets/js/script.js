@@ -4,13 +4,14 @@ $(document).ready(function () {
   var weight = 108;//$("#searchweight").val();
   var age = 30;//$("#searchAge").val();
   var gender = "male";
+  var bmiSection = $("#section-BMI");
 // weather();
 // nutritionix();
 // youtube();
 // exercise();
-// bmi();
+ bmi();
 // dailyCalory();
-// idealWeight();
+ idealWeight();
 
   function weather(){
     var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
@@ -123,6 +124,10 @@ $(document).ready(function () {
          
          $.ajax(settings).done(function (response) {
            console.log(response);
+           var bmiNumber = $("<div>").text("BMI Number: " + parseInt(response.bmi));
+           var bmiResult = $("<div>").text("Weight Status: " + response.health);
+           var bmiHealthy = $("<div>").text("Healthy BMI Range:" + response.healthy_bmi_range);
+          bmiSection.append(bmiNumber, bmiResult, bmiHealthy);
          });
        }
        
@@ -140,7 +145,9 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-	console.log(response);
+  console.log(response);
+  var idealWeight = $("<div>").text("Ideal Weight: " + parseInt(response.Devine));
+  bmiSection.append(idealWeight);
 });
 }
 
