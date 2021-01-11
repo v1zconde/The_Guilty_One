@@ -36,30 +36,32 @@
       <div class="row">
 
         <section class="small-6 large-6 columns">
-          <h3>User Info:</h3>
           <form>
+          <h3>User Info:</h3>
+          
           <fieldset class="small-12 large-6 columns">
             <legend>Gender:</legend>
             <input type="radio" name="gender" value="male" id="male-btn" required><label for="male-option">Male</label>
             <input type="radio" name="gender" value="female" id="female-btn"><label for="female-option">Female</label>
           </fieldset>
-        </form>
+        
           <label>
             <div class="medium-3 cell">
               Weight in Lbs:
-              <input id="weight-input" type="text" placeholder="weight" />
+              <input id="weight-input" type="number" placeholder="weight" />
           </label>
       </div>
       <div class="medium-3 cell">
         <label>Height:
-          <input id="feet-input" type="text" placeholder="feet" />
-          <input id="inches-input" type="text" placeholder="inches" />
+          <input id="feet-input" type="number" placeholder="feet" />
+          <input id="inches-input" type="number" placeholder="inches" />
         </label>
         <label>Age:
           <input id="age-input" type="number" placeholder="age" />
         </label>
       </div>
       <button id="userinfo-btn" class="button">Submit</button>
+    </form>
     </section>
     <section id="section-BMI" class="small-6 medium-6 large-6 columns">
       <h3>User Results:</h3>
