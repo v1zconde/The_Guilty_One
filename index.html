@@ -57,7 +57,7 @@
           <input id="age-input" type="number" placeholder="age" />
         </label>
       </div>
-      <div id="userinfo-btn" class="button">Submit</div>
+      <button id="userinfo-btn" class="button">Submit</button>
     </section>
     <section id="section-BMI" class="small-6 medium-6 large-6 columns">
       <h3>User Results:</h3>
@@ -76,9 +76,11 @@
             <input id="searchCalorie" type="text" placeholder="Food" />
           </label>
         </div>
-        <div id="meal-btn" class="button">Submit</div>
+        <!---Posible move to the side of the form-->
+        <button id="meal-btn" class="button">Submit</button>
       </section>
-      <section class="small-6 large-6 columns">
+      
+      <section class="small-6 medium-6 large-6 columns">
         <h3>Meals or consumption for today:</h3>
         <ul id="list-food">
           <div class="callout" data-closable>
@@ -105,10 +107,16 @@
         <div id="protein" class="div">Protein:</div>
       </section>
       <section class="small-6 large-6 columns">
-        <h3>Exercise:</h3>
+        <h3>Choose Exercise:</h3>
         <div class="medium-3 cell">
-          <label>Choose Exercise:</label>
-          <input id="excercise-input" type="text" placeholder="e.g.running" />
+          <ul>
+            <li id="walking">Walking</li>
+            <li id="jogging">Jogging</li>
+            <li id="running">Running</li>
+            <li id="swimming">Swimming</li>
+            <li id="bicycling">Bicycling</li>
+            <li id="jumprope">Jump Rope	</li>
+          </ul>
         </div>
         <h6 id="chosen-excercise"></h6>
       </section>
