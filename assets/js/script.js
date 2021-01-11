@@ -269,7 +269,7 @@ $(document).ready(function () {
   height = $("#searchHeight").val();
   weight = $("#searchweight").val()/2.20462;
   age = $("#searchAge").val();
-  gender = $("#searchGender").val();
+  gender = $('form input[type=radio]:checked').val();
   
   })
   
