@@ -22,6 +22,7 @@ $(document).ready(function () {
   var carbohydrateTotal;
   var fatTotal;
   var satFatTotal;
+  $(".flex-video").hide();
 
   // weather();
   // youtube();
@@ -45,25 +46,22 @@ $(document).ready(function () {
     });
   }
 
-  function youtube() {
+  function youtube(query) {
     var youtubeKey = "AIzaSyDqKuO43bR2rpGY_lJE6QlWQ39tCXUBLqQ";
-    var query = "how to run";
-    var maxResults = "&maxResults=2";
+    console.log(query);
     //var type = "&type=videos"
 
     var queryURL =
-      "https://www.googleapis.com/youtube/v3/videos?id=" +
-      query +
-      "&key=" +
-      youtubeKey +
-      "&part=snippet" +
-      maxResults;
+      "https://www.googleapis.com/youtube/v3/search?part=id&q=" +query +"&type=video&videoEmbeddable=true&maxResults=2&key="+youtubeKey;
 
     $.ajax({
       url: queryURL,
       method: "GET",
     }).then(function (response) {
       console.log(response);
+      $(".flex-video").show();
+      $("#video1").attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
+      $("#video2").attr("src", "https://www.youtube.com/embed/" + response.items[1].id.videoId);
     });
   }
 
@@ -178,9 +176,10 @@ $(document).ready(function () {
     });
   }
 
-  function exercise() {
+  function exercise(varExercise) {
     //var text = document.getElementById('inputlg').value;
-    var varExercise = "run 3 miles"; //$("#searchExercise").val();
+     //$("#searchExercise").val();
+     console.log(varExercise);
     // Ajax call to API and then appends the returned info to the food log.
     $.ajax({
       url: `https://trackapi.nutritionix.com/v2/natural/exercise`,
@@ -376,7 +375,39 @@ $(document).ready(function () {
 
 $("input[type=radio]").change( function(){
 
-  console.log($(this).val());
+var optionYoutube;
+
+var choosenExercise = $(this).val();
+
+if (choosenExercise === "Walking") {
+  choosenExercise = choosenExercise + " 10 minutes"
+  optionYoutube = "how to walk";
+} 
+else if (choosenExercise === "Jogging"){
+  choosenExercise = choosenExercise + " 10 minutes"
+  optionYoutube = "how to Jog";
+}
+else if (choosenExercise === "Running"){
+  choosenExercise = choosenExercise + "1 mile"
+  optionYoutube = "how to run";
+}
+else if (choosenExercise === "Swimming"){
+  choosenExercise = choosenExercise + " 10 minutes"
+  optionYoutube = "how to swim";
+}
+else if (choosenExercise === "Bicycling"){
+  choosenExercise = choosenExercise + " 10 minutes"
+  optionYoutube = "how to ride a bicycle";
+}
+else{
+  choosenExercise = choosenExercise + " 10 minutes"
+  optionYoutube = "how to jump rope";
+}
+console.log(choosenExercise);
+console.log(optionYoutube);
+// exercise(choosenExercise);
+youtube(optionYoutube);
+
 })
 
 
