@@ -6,6 +6,8 @@ $(document).foundation();
   var gender;
   var bmiSection = $("#section-BMI");
   var listFood = $("#list-food");
+  var nfCalories = 0;
+  var sumCalories = 0;
 // weather();
 // youtube();
 // exercise();
@@ -63,16 +65,41 @@ $(document).foundation();
             "processData": false,
             data: JSON.stringify({"query": foodCalorie}),
             success: function(response) {
-                console.log(response)
-
+              console.log(response);
+              console.log(response.foods[0].nf_calories);
+              console.log(response.foods[0].nf_protein);
+              console.log(response.foods[0].nf_cholesterol);
+              console.log(response.foods[0].nf_dietary_fiber);
+              console.log(response.foods[0].nf_total_carbohydrate);
+              console.log(response.foods[0].nf_total_fat);
+              console.log(response.foods[0].nf_saturated_fat);
               
-
-
-
+              nfCalories = response.foods[0].nf_calories;
+              sumCalories += response.foods[0].nf_calories;
+              $("#caloric-intake").text("Caloric Intake: "+ sumCalories.toFixed(2))
+              var newFood = $("<li>").text(foodCalorie).addClass("callout primary").data("data-calorie", nfCalories);
+              var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
+              var spanBtn = `<span aria-hidden="true">&times;</span>`;
+              
+              console.log(nfCalories);
+              var divCal = $("<p>").text(response.foods[0].nf_calories + " cal");
+            
+              console.log(divCal);
+              console.log(newFood);
+              console.log(closeBtn);
+              console.log(spanBtn);
+            
+              newFood.append(divCal);
+              newFood.append(closeBtn);
+              closeBtn.append(spanBtn);
+              listFood.append(newFood);
 
             }
         });
        
+
+
+
        }
        
        
@@ -93,7 +120,7 @@ $(document).foundation();
              "processData": false,
              data: JSON.stringify({
                "query": varExercise,
-               "gender": "male",
+               "gender": gender,
                "weight_kg": weight,
                "height_cm": height,
                "age": age      
@@ -191,32 +218,23 @@ gender = $("#searchGender").val();
 $("#meal-btn").on("click", function(){
 
   console.log("button");
-  //var foodCalorie = $("#searchCalorie").val();
-  //nutritionix(foodCalorie);
-  var newFood = $("<li>").text($("#searchCalorie").val()).addClass("callout primary");
-  var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
-  var spanBtn = `<span aria-hidden="true">&times;</span>`;
+  var foodCalorie = $("#searchCalorie").val();
+  nutritionix(foodCalorie);
+
   
-  console.log(newFood);
-  console.log(closeBtn);
-  console.log(spanBtn);
-  newFood.append(closeBtn);
-  closeBtn.append(spanBtn);
-  listFood.append(newFood);
 
   })
 
 $("#list-food").on("click", ".close-button", function(){
 
+  sumCalories = sumCalories - $(this).parent().data("data-calorie");
+  console.log(sumCalories);
+  $("#caloric-intake").text("Caloric Intake: "+ sumCalories.toFixed(2));
+  console.log($(this).parent());
   $(this).parent().remove();
-  console.log($(this).parent().remove());
-})
-
-$("#list-food").on("click", ".primary", function(){
-  
-  console.log("aqui");
 
 })
+
 
 
 })
