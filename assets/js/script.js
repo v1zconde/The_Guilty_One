@@ -66,34 +66,33 @@ $(document).foundation();
             data: JSON.stringify({"query": foodCalorie}),
             success: function(response) {
               console.log(response);
-              console.log(response.foods[0].nf_calories);
-              console.log(response.foods[0].nf_protein);
-              console.log(response.foods[0].nf_cholesterol);
-              console.log(response.foods[0].nf_dietary_fiber);
-              console.log(response.foods[0].nf_total_carbohydrate);
-              console.log(response.foods[0].nf_total_fat);
-              console.log(response.foods[0].nf_saturated_fat);
+              nfCalories = 0;
+              for (i = 0; i < response.foods.length; i++){
               
-              nfCalories = response.foods[0].nf_calories;
-              sumCalories += response.foods[0].nf_calories;
+              console.log(response.foods[i].nf_calories);
+              console.log(response.foods[i].nf_protein);
+              console.log(response.foods[i].nf_cholesterol);
+              console.log(response.foods[i].nf_dietary_fiber);
+              console.log(response.foods[i].nf_total_carbohydrate);
+              console.log(response.foods[i].nf_total_fat);
+              console.log(response.foods[i].nf_saturated_fat);
+              
+              nfCalories += response.foods[i].nf_calories;
+              sumCalories += response.foods[i].nf_calories;
               $("#caloric-intake").text("Caloric Intake: "+ sumCalories.toFixed(2))
-              var newFood = $("<li>").text(foodCalorie).addClass("callout primary").data("data-calorie", nfCalories);
-              var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
-              var spanBtn = `<span aria-hidden="true">&times;</span>`;
               
-              console.log(nfCalories);
-              var divCal = $("<p>").text(response.foods[0].nf_calories + " cal");
+            }
+            var newFood = $("<li>").text(foodCalorie).addClass("callout primary").data("data-calorie", nfCalories);
+            var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
+            var spanBtn = `<span aria-hidden="true">&times;</span>`;
             
-              console.log(divCal);
-              console.log(newFood);
-              console.log(closeBtn);
-              console.log(spanBtn);
-            
-              newFood.append(divCal);
-              newFood.append(closeBtn);
-              closeBtn.append(spanBtn);
-              listFood.append(newFood);
-
+         
+            var divCal = $("<p>").text(nfCalories + " cal");
+        
+            newFood.append(divCal);
+            newFood.append(closeBtn);
+            closeBtn.append(spanBtn);
+            listFood.append(newFood);
             }
         });
        
