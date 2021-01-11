@@ -8,7 +8,7 @@ $(document).ready(function () {
 //submit button
     $("#signup-btn").on("click", function(event) {
         event.preventDefault();
-        $("#msgError").text("");
+        $("#info-login").text("");
         var userName = $("#name-input")
           .val()
           .trim()
@@ -31,9 +31,39 @@ $(document).ready(function () {
 
         }
         else{
-        $("#msgError").text("UserName or Password cant be empty");
+        $("#info-login").text("UserName or Password cant be empty");
         }   
 });
+
+$("#login-btn").on("click", function(event) {
+    event.preventDefault();
+    $("#info-login").text("");
+    var userName = $("#name-input")
+      .val()
+      .trim()
+      .toLowerCase();
+  
+      var userEmail = $("#email-input")
+      .val()
+      .trim()
+      .toLowerCase();
+  
+      var userPass = $("#pass-input")
+      .val()
+      .trim()
+      .toLowerCase();
+
+    if (userName != "" && userPass != "" && userEmail != "") {
+      //Check to see if there is any text entered
+      
+        comparison(userEmail, userPass, userName,userNameSaved);
+
+    }
+    else{
+    $("#info-login").text("UserName or Password cant be empty");
+    }   
+});
+
 
 function comparison(userEmail, userPass, userName){
     console.log(userEmail +" "+ userPass + " "+ userName + " " + userNameSaved[userEmail]);
@@ -41,14 +71,15 @@ function comparison(userEmail, userPass, userName){
     var keys = Object.keys(userNameSaved)
     console.log(keys);
     if (keys.indexOf(userEmail) > -1) {
-        console.log("user already");
+       
         //if the user is already in local storage
         if (userPass == userNameSaved[userEmail].pass){
-            console.log("im here");
-            alert("you pass");
+            
+            $("#info-login").text("login sucessfull");
+            window.open("./index.html","_self")
         }
         else{
-            console.log("wrong pass");
+            $("#info-login").text("User already: wrong pass");
         }
      }
      else{
@@ -56,7 +87,7 @@ function comparison(userEmail, userPass, userName){
                                     name: userName
                                     };
         localStorage.setItem("userNameSaved", JSON.stringify(userNameSaved));
-        console.log("new user login successfull")
+        $("#info-login").text("new user login successfull")
      }
 }
 
