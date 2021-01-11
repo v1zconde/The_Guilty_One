@@ -1,9 +1,9 @@
 $(document).ready(function () {
 $(document).foundation();
-  var height = 178;//$("#searchHeight").val();
-  var weight = 87;//$("#searchweight").val()/2.20462;
-  var age = 37;//$("#searchAge").val();
-  var gender = "male";
+  var height;//$("#searchHeight").val();
+  var weight;//$("#searchweight").val()/2.20462;
+  var age;//$("#searchAge").val();
+  var gender;
   var bmiSection = $("#section-BMI");
   var listFood = $("#list-food");
 // weather();
@@ -181,6 +181,11 @@ $("#userinfo-btn").on("click", function(){
 
 console.log("button");
 
+height = $("#searchHeight").val();
+weight = $("#searchweight").val()/2.20462;
+age = $("#searchAge").val();
+gender = $("#searchGender").val();
+
 })
 
 $("#meal-btn").on("click", function(){
@@ -200,6 +205,18 @@ $("#meal-btn").on("click", function(){
   listFood.append(newFood);
 
   })
+
+$("#list-food").on("click", ".close-button", function(){
+
+  $(this).parent().remove();
+  console.log($(this).parent().remove());
+})
+
+$("#list-food").on("click", ".primary", function(){
   
+  console.log("aqui");
+
+})
+
 
 })
