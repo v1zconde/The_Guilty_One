@@ -21,4 +21,9 @@
   .panel{
       border: 3px solid;
   }
+
+  iframe{
+    margin: 20px;
+    
+  }
   
