@@ -20,10 +20,36 @@
 
   .panel{
       border: 3px solid;
+      color: #B10000
   }
 
   iframe{
     margin: 20px;
     
   }
-  
+  .callout{
+    background-color:#B10000;
+  }
+  .row{
+    background-color: #C7C7C7;
+    
+  }
+  .button{
+    background-color: #0036DC;
+  }
+  .body {
+    font-family: Garamond, serif;
+    color: #B10000;
+  }
+  h3{
+    font-family: Garamond, serif;
+    color: #252B3D;
+    font-weight: 700;
+  }
+  label{
+    font-weight: 600;
+  }
+  legend{
+    font-weight: 600;
+    color: #252B3D;
+  }
