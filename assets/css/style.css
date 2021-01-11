@@ -9,6 +9,7 @@
     height: 3em;
     margin: 0;
     text-align: center;
+    background-color: #4F4846;
   }
 
   .title-bar-center {
@@ -20,7 +21,7 @@
 
   .panel{
       border: 3px solid;
-      color: #B10000
+      color: #4F4846
   }
 
   iframe{
@@ -28,22 +29,22 @@
     
   }
   .callout{
-    background-color:#B10000;
+    background-color:#DDAF94;
   }
   .row{
-    background-color: #C7C7C7;
+    background-color: #E8CEBF;
     
   }
   .button{
-    background-color: #0036DC;
+    background-color: #266150;
   }
   .body {
     font-family: Garamond, serif;
-    color: #B10000;
+    color: #DDAF94;
   }
   h3{
     font-family: Garamond, serif;
-    color: #252B3D;
+    color: #4F4846;
     font-weight: 700;
   }
   label{
@@ -51,5 +52,5 @@
   }
   legend{
     font-weight: 600;
-    color: #252B3D;
+    color: #283747;
   }
