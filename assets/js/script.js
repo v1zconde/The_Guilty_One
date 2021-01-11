@@ -6,8 +6,15 @@ $(document).foundation();
   var gender;
   var bmiSection = $("#section-BMI");
   var listFood = $("#list-food");
+  var nutriFacts = $("#nutritional-facts");
   var nfCalories = 0;
   var sumCalories = 0;
+  nfProtein =0;
+  nfCholesterol =0;
+  nfDietaryFiber =0;
+  nfTotalCarbohydrate =0;
+  nfTotalFat =0;
+  nfSaturatedFat =0;
 // weather();
 // youtube();
 // exercise();
@@ -67,32 +74,43 @@ $(document).foundation();
             success: function(response) {
               console.log(response);
               nfCalories = 0;
+              nutriFacts.empty();
               for (i = 0; i < response.foods.length; i++){
               
-              console.log(response.foods[i].nf_calories);
-              console.log(response.foods[i].nf_protein);
-              console.log(response.foods[i].nf_cholesterol);
-              console.log(response.foods[i].nf_dietary_fiber);
-              console.log(response.foods[i].nf_total_carbohydrate);
-              console.log(response.foods[i].nf_total_fat);
-              console.log(response.foods[i].nf_saturated_fat);
-              
               nfCalories += response.foods[i].nf_calories;
+              nfProtein += response.foods[i].nf_protein;
+              nfCholesterol += response.foods[i].nf_cholesterol;
+              nfDietaryFiber += response.foods[i].nf_dietary_fiber;
+              nfTotalCarbohydrate += response.foods[i].nf_total_carbohydrate;
+              nfTotalFat += response.foods[i].nf_total_fat;
+              nfSaturatedFat += response.foods[i].nf_saturated_fat;
+
               sumCalories += response.foods[i].nf_calories;
               $("#caloric-intake").text("Caloric Intake: "+ sumCalories.toFixed(2))
               
             }
-            var newFood = $("<li>").text(foodCalorie).addClass("callout primary").data("data-calorie", nfCalories);
+            var newFood = $("<li>").text(foodCalorie + " = " + nfCalories + " cal").addClass("callout primary").data("data-calorie", nfCalories);
             var closeBtn = $("<button>").addClass("close-button").attr("aria-label", "Dismiss alert").attr("type", "button");
             var spanBtn = `<span aria-hidden="true">&times;</span>`;
-            
-         
-            var divCal = $("<p>").text(nfCalories + " cal");
-        
-            newFood.append(divCal);
+
+            var caloriesTotal = $("<li>").text("Calories: " + sumCalories.toFixed(2));
+            var proteinTotal = $("<li>").text("Proteins: " + nfProtein.toFixed(2));
+            var cholesterolTotal = $("<li>").text("Cholesterol: " + nfCholesterol.toFixed(2));
+            var fiberTotal = $("<li>").text("Dietary Fiber: " + nfDietaryFiber.toFixed(2));
+            var fatTotal = $("<li>").text("Total Fat: " + nfTotalFat.toFixed(2));
+            var satFatTotal = $("<li>").text("Saturated Fat: " + nfSaturatedFat.toFixed(2));
+
+
+            nutriFacts.append(caloriesTotal, proteinTotal, cholesterolTotal, fiberTotal, fatTotal, satFatTotal);
+
             newFood.append(closeBtn);
             closeBtn.append(spanBtn);
             listFood.append(newFood);
+
+
+
+
+
             }
         });
        
