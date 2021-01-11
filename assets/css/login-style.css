@@ -66,3 +66,7 @@ form .form-icons {
     #panels{
       border: 3px solid;
   }
+
+  .loginBtn {
+    width: 150px;
+  }
