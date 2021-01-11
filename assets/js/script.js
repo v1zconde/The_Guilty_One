@@ -1,8 +1,8 @@
 $(document).ready(function () {
   $(document).foundation();
-    var height;//$("#searchHeight").val();
-    var weight;//$("#searchweight").val()/2.20462;
-    var age;//$("#searchAge").val();
+    var height = 0;
+    var weight = 0;
+    var age = 0;
     var gender;
     var bmiSection = $("#section-BMI");
     var listFood = $("#list-food");
@@ -199,7 +199,7 @@ $(document).ready(function () {
          
          
          
-         function bmi(){
+         function bmi(age, height, weight){
          
            var settings = {
              "async": true,
@@ -222,7 +222,7 @@ $(document).ready(function () {
          }
          
          
-  function idealWeight(){
+  function idealWeight(gender, height, weight){
   var settings = {
       "async": true,
       "crossDomain": true,
@@ -259,18 +259,25 @@ $(document).ready(function () {
       console.log(response);
     });
   
-  
   }
   
-  $("#userinfo-btn").on("click", function(){
-  
-  console.log("button");
-  
-  height = $("#searchHeight").val();
-  weight = $("#searchweight").val()/2.20462;
-  age = $("#searchAge").val();
+  $("#userinfo-btn").on("click", function(event){
+    event.preventDefault();
+var heightFeet = $("#feet-input").val() * 12;
+var heightInches = $("#inches-input").val();
+
+  height = (parseInt(heightFeet) + parseInt(heightInches)) * 2.54;
+
+  console.log(heightFeet);
+  console.log(heightInches);
+  console.log(height);
+  weight = parseInt($("#weight-input").val())/2.20462;
+  age = $("#age-input").val();
   gender = $('form input[type=radio]:checked').val();
-  
+  console.log(weight);
+
+  bmi(age, height, weight);
+  idealWeight(gender, height, weight)
   })
   
   $("#meal-btn").on("click", function(){
