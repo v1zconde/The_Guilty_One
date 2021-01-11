@@ -112,16 +112,22 @@
       </section>
       <section class="small-6 large-6 columns">
         <h3>Choose Exercise:</h3>
-        <div class="medium-3 cell">
-          <ul>
-            <li id="walking">Walking</li>
-            <li id="jogging">Jogging</li>
-            <li id="running">Running</li>
-            <li id="swimming">Swimming</li>
-            <li id="bicycling">Bicycling</li>
-            <li id="jumprope">Jump Rope	</li>
-          </ul>
-
+        <div class="large-12 cell">
+          <fieldset class="fieldset flex">
+            <legend>Select a Exercise: </legend>
+            <input type="radio" name="exerciseRadio" id="radio-1" value="Walking" required>
+            <label for="radio-1">Walking</label>
+            <input type="radio" name="exerciseRadio" id="radio-2" value="Jogging">
+            <label for="radio-2">Jogging</label>
+            <input type="radio" name="exerciseRadio" id="radio-3" value="Running">
+            <label for="radio-3">Running</label>
+            <input type="radio" name="exerciseRadio" id="radio-4" value="Swimming">
+            <label for="radio-1">Swimming</label>
+            <input type="radio" name="exerciseRadio" id="radio-5" value="Bycycling">
+            <label for="radio-2">Bicycling</label>
+            <input type="radio" name="exerciseRadio" id="radio-6" value="Jump Rope">
+            <label for="radio-3">Jump Rope</label>
+          </fieldset>
         </div>
         <h6 id="chosen-excercise"></h6>
       </section>
