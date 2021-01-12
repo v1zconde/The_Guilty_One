@@ -53,6 +53,22 @@
     color: #252B3D;
   }
 
+  body{
+    background-color: #DADED4;
+  }
+
+  /* .food{
+    background-image: url("https://specials-images.forbesimg.com/imageserve/5ff1f38cf7f23774795c1f87/960x0.jpg?cropX1=369&cropX2=1912&cropY1=0&cropY2=1028");
+  } */
+
+
+
+
+
+
+
+
+
   .social:hover {
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
