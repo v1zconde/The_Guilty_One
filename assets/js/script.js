@@ -22,6 +22,8 @@ $(document).ready(function () {
   var carbohydrateTotal;
   var fatTotal;
   var satFatTotal;
+  var calIntake = 0;
+  var divCalIntake = $("#caloric-intake")
   $(".flex-video").hide();
   $("#section-exercise").hide();
   mapboxgl.accessToken =
@@ -208,7 +210,14 @@ $(document).ready(function () {
           fatTotal,
           satFatTotal
         );
-
+        console.log(calIntake);
+        console.log(allValues.sumCalories);
+        if (allValues.sumCalories > calIntake){
+          divCalIntake.addClass("gordo");
+        }
+        else{
+          divCalIntake.removeClass("gordo");
+        }
         newFood.append(closeBtn);
         closeBtn.append(spanBtn);
         listFood.append(newFood);
@@ -284,18 +293,20 @@ $(document).ready(function () {
         parseInt($("#feet-input").val() * 12) +
         parseInt($("#inches-input").val());
       var bmrAge = $("#age-input").val();
-      var calIntake = $("#calintake-list option:selected").val();
+      var actFactor = $("#calintake-list option:selected").val();
       var bmrTotal = 0;
       var bmrResult = 0;
       if (gender === "male") {
         bmrTotal = 66 + 6.3 * bmrWeight + 12.9 * bmrHeight - 6.8 * bmrAge;
+        calIntake = bmrTotal * actFactor;
         bmrResult = $("<div>").text(
-          "Calorie Intake: " + bmrTotal * calIntake + " to maintain weight"
+          "Calorie Intake: " + calIntake + " to maintain weight"
         );
       } else {
         bmrTotal = 655 + 4.3 * bmrWeight + 4.7 * bmrHeight - 4.7 * bmrAge;
+        calIntake = bmrTotal * actFactor;
         bmrResult = $("<div>").text(
-          "Calorie Intake: " + bmrTotal * calIntake + " to maintain weight"
+          "Calorie Intake: " + calIntake + " to maintain weight"
         );
       }
 
@@ -330,31 +341,6 @@ $(document).ready(function () {
         "Ideal Weight: " + parseInt(convertWeight) + " Lbs"
       );
       bmiSection.append(idealWeight);
-    });
-  }
-
-  function dailyCalory() {
-    var settings = {
-      async: true,
-      crossDomain: true,
-      url:
-        "https://fitness-calculator.p.rapidapi.com/dailycalory?heigth=" +
-        height +
-        "&age=" +
-        age +
-        "&gender=" +
-        gender +
-        "&weigth=" +
-        weight,
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "fitness-calculator.p.rapidapi.com",
-        "x-rapidapi-key": "326c08efc4msh3ec74b227a66488p11e6a4jsn175985e6f982",
-      },
-    };
-
-    $.ajax(settings).done(function (response) {
-      console.log(response);
     });
   }
 
@@ -418,7 +404,7 @@ $(document).ready(function () {
     fatTotal.text("Total Fat: " + allValues.fat.toFixed(2));
     satFatTotal.text("Saturated Fat: " + allValues.saturatedFat.toFixed(2));
 
-    $("#caloric-intake").text(
+    divCalIntake.text(
       "Caloric Intake: " + allValues.sumCalories.toFixed(2)
     );
     console.log($(this).parent());
@@ -434,6 +420,14 @@ $(document).ready(function () {
       nfSaturatedFat = 0;
       sumCalories = 0;
       allValues = {};
+    }
+    console.log(calIntake);
+    console.log(allValues.sumCalories);
+    if (allValues.sumCalories > calIntake){
+      divCalIntake.addClass("gordo");
+    }
+    else{
+      divCalIntake.removeClass("gordo");
     }
   });
 
