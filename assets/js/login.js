@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  $(document).foundation();
 //global variables and getting values from local storage
     var userNameSavedString = localStorage.getItem("userNameSaved");
     var userNameSaved = JSON.parse(userNameSavedString);
