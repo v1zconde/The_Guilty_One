@@ -9,6 +9,7 @@
     height: 3em;
     margin: 0;
     text-align: center;
+    background-color:  #3C403D;
 
   }
 
@@ -109,7 +110,7 @@ bottom: 0;
 width: 100%;
 text-align: center;
 left: 0;
-background-color: black;
+background-color:  #3C403D;
 padding: 5px;
 color: #4099FF;
 }
@@ -121,4 +122,5 @@ color: #4099FF;
 .foot {
   display: block;
   color: #4099FF;
+  
 }
