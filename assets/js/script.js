@@ -34,6 +34,12 @@ $(document).ready(function () {
 init();
 
 
+var interval = setInterval(function() {
+  var momentNow = moment();
+  $('#time').html(momentNow.format('MMMM DD YYYY') + " " + momentNow.format('hh:mm:ss A'));
+}, 100);
+
+
 function init(){
  
     if (navigator.geolocation) {
