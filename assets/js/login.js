@@ -5,6 +5,12 @@ $(document).ready(function () {
     if (userNameSaved == null) {
         userNameSaved = {};
       }
+
+
+      var interval = setInterval(function() {
+        var momentNow = moment();
+        $('#time').html(momentNow.format('MMMM DD YYYY') + " " + momentNow.format('hh:mm:ss A'));
+      }, 100);
 //submit button
     $("#signup-btn").on("click", function(event) {
         event.preventDefault();
