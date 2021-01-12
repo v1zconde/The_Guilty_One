@@ -24,7 +24,13 @@ $(document).ready(function () {
   var satFatTotal;
   $(".flex-video").hide();
   $("#section-exercise").hide();
-
+  mapboxgl.accessToken =
+    "pk.eyJ1IjoidjF6Y29uZGUiLCJhIjoiY2tqdTMyZXRtMGJiaDMycGw5dGEyeXhpMCJ9.b_yBWiWPazINgTelgLeUjg";
+  var lat;
+  var lng;
+  navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
+    enableHighAccuracy: true,
+  });
 
   // weather();
   // youtube();
@@ -33,33 +39,34 @@ $(document).ready(function () {
   // dailyCalory();
   // idealWeight();
 
-init();
+  init();
 
+  var interval = setInterval(function () {
+    var momentNow = moment();
+    $("#time").html(
+      momentNow.format("MMMM DD YYYY") + " " + momentNow.format("hh:mm:ss A")
+    );
+  }, 100);
 
-var interval = setInterval(function() {
-  var momentNow = moment();
-  $('#time').html(momentNow.format('MMMM DD YYYY') + " " + momentNow.format('hh:mm:ss A'));
-}, 100);
-
-
-function init(){
- 
+  function init() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(weather);
-      console.log(navigator.geolocation)
-    } else { 
+      console.log(navigator.geolocation);
+    } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  
-
-}
-
+  }
 
   function weather(location) {
     var weatherKey = "0672c5c44771cae78024eb3855e55f10";
 
     var weatherURL =
-      "https://api.openweathermap.org/data/2.5/weather?lat="+ location.coords.latitude + "&units=imperial"+"&lon="+ location.coords.longitude +"&appid=" +
+      "https://api.openweathermap.org/data/2.5/weather?lat=" +
+      location.coords.latitude +
+      "&units=imperial" +
+      "&lon=" +
+      location.coords.longitude +
+      "&appid=" +
       weatherKey;
 
     $.ajax({
@@ -67,7 +74,6 @@ function init(){
       method: "GET",
     }).then(function (weatherAPi) {
       console.log(weatherAPi);
-
     });
   }
 
@@ -269,21 +275,28 @@ function init(){
       console.log(response);
       var bmiNumber = $("<div>").text("BMI Number: " + parseInt(response.bmi));
       var bmiResult = $("<div>").text("Weight Status: " + response.health);
-      var bmiHealthy = $("<div>").text("Healthy BMI Range:" + response.healthy_bmi_range);
+      var bmiHealthy = $("<div>").text(
+        "Healthy BMI Range:" + response.healthy_bmi_range
+      );
       var titleBmi = $("<h3>").text("User Results: ");
       var bmrWeight = $("#weight-input").val();
-      var bmrHeight = parseInt(($("#feet-input").val()) * 12) + parseInt($("#inches-input").val());
+      var bmrHeight =
+        parseInt($("#feet-input").val() * 12) +
+        parseInt($("#inches-input").val());
       var bmrAge = $("#age-input").val();
       var calIntake = $("#calintake-list option:selected").val();
-      var bmrTotal = 0
+      var bmrTotal = 0;
       var bmrResult = 0;
-      if (gender === "male"){
-        bmrTotal = ((66 + (6.3 * bmrWeight)) + (12.9 * bmrHeight) - (6.8 * bmrAge));
-        bmrResult= $("<div>").text("Calorie Intake: " + bmrTotal * calIntake + " to maintain weight");
-      }
-      else{
-        bmrTotal = (655 + (4.3 * bmrWeight)) + (4.7 * bmrHeight) - (4.7 * bmrAge);
-        bmrResult= $("<div>").text("Calorie Intake: " + bmrTotal * calIntake + " to maintain weight");
+      if (gender === "male") {
+        bmrTotal = 66 + 6.3 * bmrWeight + 12.9 * bmrHeight - 6.8 * bmrAge;
+        bmrResult = $("<div>").text(
+          "Calorie Intake: " + bmrTotal * calIntake + " to maintain weight"
+        );
+      } else {
+        bmrTotal = 655 + 4.3 * bmrWeight + 4.7 * bmrHeight - 4.7 * bmrAge;
+        bmrResult = $("<div>").text(
+          "Calorie Intake: " + bmrTotal * calIntake + " to maintain weight"
+        );
       }
 
       bmiSection.empty();
@@ -361,7 +374,6 @@ function init(){
     console.log(gender);
 
     bmi(age, height, weight);
-    
   });
 
   $("#meal-btn").on("click", function (event) {
@@ -455,4 +467,29 @@ function init(){
     // exercise(choosenExercise);
     // youtube(optionYoutube);
   });
+
+  function successLocation(position) {
+    console.log(position);
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    setupMap([lng, lat]);
+  }
+
+  function errorLocation() {
+    setupMap([-81.379234, 28.538336]); // add geo for orlando when they say no (right now is london)
+  }
+
+  function setupMap(center) {
+    var map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v11",
+      center: center,
+      zoom: 12,
+    });
+
+    var nav = new mapboxgl.NavigationControl();
+    map.addControl(nav);
+
+    var marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
+  }
 });
