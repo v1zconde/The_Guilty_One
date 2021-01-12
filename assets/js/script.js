@@ -23,6 +23,8 @@ $(document).ready(function () {
   var fatTotal;
   var satFatTotal;
   $(".flex-video").hide();
+  $("#section-exercise").hide();
+
 
   // weather();
   // youtube();
@@ -349,6 +351,7 @@ function init(){
   $("#meal-btn").on("click", function () {
     console.log("button");
     var foodCalorie = $("#searchCalorie").val();
+    $("#section-exercise").show();
     nutritionix(foodCalorie);
   });
 
