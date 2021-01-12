@@ -98,13 +98,15 @@ width: 100%;
 text-align: center;
 left: 0;
 background-color: black;
-margin-top: auto;
+padding: 5px;
+color: #4099FF;
 }
 
 #last{
-  margin-bottom: 100px;
+  margin-bottom: 120px;
 }
 
 .foot {
   display: block;
+  color: #4099FF;
 }
