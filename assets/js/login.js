@@ -83,7 +83,7 @@ function comparison(userEmail, userPass, userName){
         if (userPass == userNameSaved[userEmail].pass){
             
             $("#info-login").text("login sucessfull");
-            window.open("./index.html","_self")
+            window.open("./main.html","_self")
         }
         else{
             $("#info-login").text("User already: wrong pass");
