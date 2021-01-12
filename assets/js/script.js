@@ -19,9 +19,11 @@ $(document).ready(function () {
   var proteinTotal;
   var cholesterolTotal;
   var fiberTotal;
+  var choosenExercise;
   var carbohydrateTotal;
   var fatTotal;
   var satFatTotal;
+  var extraWeight = 0;
   var calIntake = 0;
   var divCalIntake = $("#caloric-intake")
   $(".flex-video").hide();
@@ -229,7 +231,7 @@ $(document).ready(function () {
     //var text = document.getElementById('inputlg').value;
     //$("#searchExercise").val();
     console.log(varExercise);
-    query = "1 mile run 10 min swiming, 10 jumping jacks, 10 squads";
+    
     // Ajax call to API and then appends the returned info to the food log.
     $.ajax({
       url: `https://trackapi.nutritionix.com/v2/natural/exercise`,
@@ -242,8 +244,7 @@ $(document).ready(function () {
       dataType: "json",
       processData: false,
       data: JSON.stringify({
-        // query: varExercise,
-        query: query,
+        query: varExercise,
         gender: gender,
         weight_kg: weight,
         height_cm: height,
@@ -251,16 +252,12 @@ $(document).ready(function () {
       }),
       success: function (response) {
         console.log(response);
+        var exer = $("<p>");
+        exer.text("To burn extra " + extraWeight + " Calories" + ", " + choosenExercise + ", " + response.exercises[0].nf_calories)
+        $("#msgExercise").append(exer);
       },
     });
   }
-
-  //  $("#searchBtn").on("click", function(event){
-  //    event.preventDefault();
-  //    nutritionix();
-  //    exercise();
-  //    bmi();
-  //  });
 
   function bmi(age, height, weight) {
     var settings = {
@@ -423,20 +420,21 @@ $(document).ready(function () {
     }
     console.log(calIntake);
     console.log(allValues.sumCalories);
+
     if (allValues.sumCalories > calIntake){
       divCalIntake.addClass("gordo");
+      extraWeight = allValues.sumCalories - calIntake;
     }
     else{
       divCalIntake.removeClass("gordo");
     }
   });
 
-  $("input[type=radio]").change(function (event) {
+  $("fieldset input[type=radio]").change(function (event) {
     event.preventDefault();
     var optionYoutube;
 
-    var choosenExercise = $(this).val();
-
+    choosenExercise = $(this).val();
     if (choosenExercise === "Walking") {
       choosenExercise = choosenExercise + " 10 minutes";
       optionYoutube = "how to walk";
@@ -458,8 +456,8 @@ $(document).ready(function () {
     }
     console.log(choosenExercise);
     console.log(optionYoutube);
-    // exercise(choosenExercise);
-    // youtube(optionYoutube);
+     exercise(choosenExercise);
+     youtube(optionYoutube);
   });
 
   function successLocation(position) {
@@ -486,4 +484,12 @@ $(document).ready(function () {
 
     var marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
   }
+
+
+  $("bmiForm").on("click", function (event) {
+    event.preventDefault();
+  })
+
+
+
 });

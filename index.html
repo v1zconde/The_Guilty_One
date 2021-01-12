@@ -34,9 +34,9 @@
 
       <div class="column large-4">
         <h5>User Info:</h5>
-        <form>
+        <form id="bmiForm">
           <legend>Gender:
-            <input type="radio" name="gender" value="male" id="male-btn" required><label for="male-option">Male</label>
+            <input type="radio" name="gender" value="male" id="male-btn"><label for="male-option">Male</label>
             <input type="radio" name="gender" value="female" id="female-btn"><label for="female-option">Female</label>
           </legend>
 
@@ -129,7 +129,7 @@
 <!---Fitness Area-->
   <div class="row" >
     <div class="medium-3 columns ">
-      <fieldset>
+      <fieldset id="msgExercise">
         <legend>
           <h3>Choose Workout:</h3>
         <input type="radio" name="exerciseRadio" id="radio-1" value="Walking" required>
@@ -144,6 +144,7 @@
         <label for="radio-2">Cycling</label>
       </legend>
       </fieldset>
+
     </div>
 
     <div id="video-section" class="medium-9 medium-up-2 text-center columns ">
