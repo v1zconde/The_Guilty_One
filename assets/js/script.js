@@ -275,6 +275,7 @@ function init(){
 
       bmiSection.empty();
       bmiSection.append(titleBmi, bmiNumber, bmiResult, bmiHealthy);
+      idealWeight(gender, height, weight);
     });
   }
 
@@ -347,7 +348,7 @@ function init(){
     console.log(gender);
 
     bmi(age, height, weight);
-    idealWeight(gender, height, weight);
+    
   });
 
   $("#meal-btn").on("click", function () {
@@ -357,7 +358,8 @@ function init(){
     nutritionix(foodCalorie);
   });
 
-  $("#list-food").on("click", ".close-button", function () {
+  $("#list-food").on("click", ".close-button", function (event) {
+    event.preventDefault();
     allValues.sumCalories =
       allValues.sumCalories - $(this).parent().data("data-calorie").calories;
     allValues.protein =
@@ -409,7 +411,8 @@ function init(){
     }
   });
 
-  $("input[type=radio]").change(function () {
+  $("input[type=radio]").change(function (event) {
+    event.preventDefault();
     var optionYoutube;
 
     var choosenExercise = $(this).val();
