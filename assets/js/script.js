@@ -87,7 +87,7 @@ function init(){
       method: "GET",
     }).then(function (response) {
       console.log(response);
-      $(".flex-video").show();
+      $("#video-section").show();
       $("#video1").attr(
         "src",
         "https://www.youtube.com/embed/" + response.items[0].id.videoId
