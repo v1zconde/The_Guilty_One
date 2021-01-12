@@ -31,11 +31,27 @@ $(document).ready(function () {
   // dailyCalory();
   // idealWeight();
 
-  function weather() {
-    var weatherKey = "003a409f77a14111e24eab0bc46c05ec";
+init();
+
+
+function init(){
+ 
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(weather);
+      console.log(navigator.geolocation)
+    } else { 
+      console.log("Geolocation is not supported by this browser.");
+    }
+  
+
+}
+
+
+  function weather(location) {
+    var weatherKey = "0672c5c44771cae78024eb3855e55f10";
 
     var weatherURL =
-      "https://api.openweathermap.org/data/2.5/weather?q=orlando&appid=" +
+      "https://api.openweathermap.org/data/2.5/weather?lat="+ location.coords.latitude + "&units=imperial"+"&lon="+ location.coords.longitude +"&appid=" +
       weatherKey;
 
     $.ajax({
@@ -43,6 +59,7 @@ $(document).ready(function () {
       method: "GET",
     }).then(function (weatherAPi) {
       console.log(weatherAPi);
+
     });
   }
 
