@@ -271,10 +271,23 @@ function init(){
       var bmiResult = $("<div>").text("Weight Status: " + response.health);
       var bmiHealthy = $("<div>").text("Healthy BMI Range:" + response.healthy_bmi_range);
       var titleBmi = $("<h3>").text("User Results: ");
-
+      var bmrWeight = $("#weight-input").val();
+      var bmrHeight = parseInt(($("#feet-input").val()) * 12) + parseInt($("#inches-input").val());
+      var bmrAge = $("#age-input").val();
+      var calIntake = $("#calintake-list option:selected").val();
+      var bmrTotal = 0
+      var bmrResult = 0;
+      if (gender === "male"){
+        bmrTotal = ((66 + (6.3 * bmrWeight)) + (12.9 * bmrHeight) - (6.8 * bmrAge));
+        bmrResult= $("<div>").text("Calorie Intake: " + bmrTotal * calIntake + " to maintain weight");
+      }
+      else{
+        bmrTotal = (655 + (4.3 * bmrWeight)) + (4.7 * bmrHeight) - (4.7 * bmrAge);
+        bmrResult= $("<div>").text("Calorie Intake: " + bmrTotal * calIntake + " to maintain weight");
+      }
 
       bmiSection.empty();
-      bmiSection.append(titleBmi, bmiNumber, bmiResult, bmiHealthy);
+      bmiSection.append(titleBmi, bmiNumber, bmiResult, bmiHealthy, bmrResult);
       idealWeight(gender, height, weight);
     });
   }
@@ -439,7 +452,7 @@ function init(){
     }
     console.log(choosenExercise);
     console.log(optionYoutube);
-    exercise(choosenExercise);
-    youtube(optionYoutube);
+    // exercise(choosenExercise);
+    // youtube(optionYoutube);
   });
 });
