@@ -351,7 +351,8 @@ function init(){
     
   });
 
-  $("#meal-btn").on("click", function () {
+  $("#meal-btn").on("click", function (event) {
+    event.preventDefault();
     console.log("button");
     var foodCalorie = $("#searchCalorie").val();
     $("#section-exercise").show();
@@ -439,6 +440,6 @@ function init(){
     console.log(choosenExercise);
     console.log(optionYoutube);
     exercise(choosenExercise);
-    //youtube(optionYoutube);
+    youtube(optionYoutube);
   });
 });
