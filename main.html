@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>The Guilty One App</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+  <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+<!-- Div for introduction and title -->
+
+<body>
+  <div class="title-bar">
+    <div class="title-bar-left">
+      <span class="title-bar-text">Hello User</span>
+    </div>
+    <div class="title-bar-center">
+      <span class="title-bar-text">The Guilty One</span>
+    </div>
+    <div class="title-bar-right">
+      <span id="time" class="title-bar-text"></span>
+      <span class="title-bar-text"><a href="#"><i class="fa fa-home title-bar-logo"></i></a></span>
+    </div>
+  </div>
+
+  <div class="blog success callout large primary">
+    <div class="row success">
+
+      <div class="column large-4">
+        <h5>User Info:</h5>
+        <form id="bmiForm">
+          <legend>Gender:
+            <input type="radio" name="gender" value="male" id="male-btn"><label for="male-option">Male</label>
+            <input type="radio" name="gender" value="female" id="female-btn"><label for="female-option">Female</label>
+          </legend>
+
+          <div class="row">
+            <div class="row">
+              <div class="column large-3">
+                <label>Age:</label>
+                <input id="age-input" type="number" placeholder="age" />
+              </div>
+              <div class="column large-3">
+                <label>Weight:</label>
+                <input id="weight-input" type="number" placeholder="lbs" />
+              </div>
+              <div class="column large-3">
+                <label>Ft:</label>
+                <input id="feet-input" type="number" placeholder="feet" />
+              </div>
+              <div class="column large-3">
+                <label>In:</label>
+                <input id="inches-input" type="number" placeholder="inches" />
+              </div>
+            </div>
+            <div class="column large-10">
+              <td width="450">
+                <select id="calintake-list" name="cactivity">
+                  <option value="1.2">Sedentary: little or no exercise</option>
+                  <option value="1.375" selected="">Light: exercise 1-3 times/week</option>
+                  <option value="1.465">Moderate: exercise 4-5 times/week</option>
+                  <option value="1.55">Active: daily exercise or intense exercise 3-4 times/week</option>
+                  <option value="1.725">Very Active: intense exercise 6-7 times/week</option>
+                </select>
+              </td>
+            </div>
+            <div class="column large-2">
+              <button id="userinfo-btn" class="button">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="column large-6">
+        <section id="section-BMI" class="small-6 medium-6 large-6 columns">
+          <h5 class="">User Results:</h5>
+        </section>
+      </div>
+      <div class="column large-4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Meal Prep Division-->
+
+  <hr>
+  <div class="row meal-top">
+    <h4 style="margin: 0;" class="text-center">MEAL PREP</h4>
+  </div>
+  <hr>
+
+  <!---make fix rows on the left side and fix height and width of those rows-->
+  <div class=" food row">
+    <div class="medium-4 columns text-center">
+      <form>
+        <label>
+          <h4>Add Meal:</h4>
+          <input id="searchCalorie" type="text" placeholder="Food" />
+          <button id="meal-btn" class="button">Submit</button>
+        </label>
+      </form>
+      <br>
+      <br>
+      <h3>Nutritional Facts</h3>
+      <ul id="nutritional-facts">
+      </ul>
+    </div>
+    <div class="medium-6 columns">
+      <h3>Meals or consumption for today:</h3>
+      <ul id="list-food">
+      </ul>
+      <h5 id="caloric-intake"></h5>
+    </div>
+  </div>
+
+    <!----Excercise Division-->
+  <hr>
+  <hr>
+  <div class="row column">
+    <h4 style="margin: 0;" class="text-center">FITNESS/EXCERCISE</h4>
+  </div>
+  <hr>
+
+<!---Fitness Area-->
+  <div class="row" >
+    <div class="medium-3 columns ">
+      <fieldset id="msgExercise">
+        <legend>
+          <h3>Choose Workout:</h3>
+        <input type="radio" name="exerciseRadio" id="radio-1" value="Walking" required>
+        <label for="radio-1">Walking</label>
+        <input type="radio" name="exerciseRadio" id="radio-2" value="Jogging">
+        <label for="radio-2">Jogging</label>
+        <input type="radio" name="exerciseRadio" id="radio-3" value="Running">
+        <label for="radio-3">Running</label>
+        <input type="radio" name="exerciseRadio" id="radio-4" value="Swimming">
+        <label for="radio-1">Swimming</label>
+        <input type="radio" name="exerciseRadio" id="radio-5" value="Bycycling">
+        <label for="radio-2">Cycling</label>
+      </legend>
+      </fieldset>
+
+    </div>
+
+    <div id="video-section" class="medium-9 medium-up-2 text-center columns ">
+      <h3>Do it right:</h3>
+      <div class="row">
+        <div class="column">
+          <iframe id="video1" width="400" height="300" src="https://www.youtube.com/embed/mM5_T-F1Yn4"
+            frameborder="0"></iframe>
+        </div>
+        <div class="column">
+          <iframe id="video2" width="400" height="300" src="https://www.youtube.com/embed/mM5_T-F1Yn4"
+            frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+<!---Map-->
+  <div class="row text-center" id="last">
+    <h3>Map</h3>
+    <div class="column medium-8">
+      <div id='map' style='width: 400px; height: 300px;'></div>
+    </div>
+</div>
+<!---Footer-->
+  <footer>
+    <div class="wrap row small-up-1 medium-up-3">
+      <div class="column">
+        <h6 class="foot">Contact Info</h6>
+        <a class="foot" href="#"><span>Phone</span>123-456-7890</a>
+        <a class="foot" href="#"><span>Email</span>user@email.com</a>
+        <a class="foot" href="#"><span>Address</span>1234 Orlando, Fl</a>
+      </div>
+      <div class="column">
+        <h6>Social Media</h6>
+        <a href="https://www.facebook.com" target="_blank"><i id="social-fb"
+            class="fa fa-facebook-square fa-2x social"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i id="social-tw"
+            class="fa fa-twitter-square fa-2x social"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i id="social-ig"
+            class="fa fa-instagram fa-2x social"></i></a>
+        <a href="mailto:rvasquez1@gmail.com" target="_blank"><i id="social-em"
+            class="fa fa-envelope-square fa-2x social"></i></a>
+      </div>
+      <div class="column">
+        <h6>Side Map</h6>
+        <p class="small">©Copyright 2021</p>
+      </div>
+    </div>
+  </footer>
+  <!-- Script links -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!-- Compressed JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+    integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+  <!-- <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script> -->
+  <script src="https://apis.google.com/js/api.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+  <script src="./assets/js/script.js"defer></script>
+</body>
+
+</html>

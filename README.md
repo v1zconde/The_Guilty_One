@@ -2,7 +2,7 @@
 
 ## Overview of the project
 
-![](Project_gif.gif)
+![](assets/imgs/Project.gif)
 
 An app that helps users understand how much exercise would be required to offset a given food.
 *This app does send user data to a server for processing*
