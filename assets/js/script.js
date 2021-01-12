@@ -269,10 +269,12 @@ function init(){
       console.log(response);
       var bmiNumber = $("<div>").text("BMI Number: " + parseInt(response.bmi));
       var bmiResult = $("<div>").text("Weight Status: " + response.health);
-      var bmiHealthy = $("<div>").text(
-        "Healthy BMI Range:" + response.healthy_bmi_range
-      );
-      bmiSection.append(bmiNumber, bmiResult, bmiHealthy);
+      var bmiHealthy = $("<div>").text("Healthy BMI Range:" + response.healthy_bmi_range);
+      var titleBmi = $("<h3>").text("User Results: ");
+
+
+      bmiSection.empty();
+      bmiSection.append(titleBmi, bmiNumber, bmiResult, bmiHealthy);
     });
   }
 
