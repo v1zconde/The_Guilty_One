@@ -52,7 +52,10 @@ $(document).ready(function () {
     //var type = "&type=videos"
 
     var queryURL =
-      "https://www.googleapis.com/youtube/v3/search?part=id&q=" +query +"&type=video&videoEmbeddable=true&maxResults=2&key="+youtubeKey;
+      "https://www.googleapis.com/youtube/v3/search?part=id&q=" +
+      query +
+      "&type=video&videoEmbeddable=true&maxResults=2&key=" +
+      youtubeKey;
 
     $.ajax({
       url: queryURL,
@@ -60,8 +63,14 @@ $(document).ready(function () {
     }).then(function (response) {
       console.log(response);
       $(".flex-video").show();
-      $("#video1").attr("src", "https://www.youtube.com/embed/" + response.items[0].id.videoId);
-      $("#video2").attr("src", "https://www.youtube.com/embed/" + response.items[1].id.videoId);
+      $("#video1").attr(
+        "src",
+        "https://www.youtube.com/embed/" + response.items[0].id.videoId
+      );
+      $("#video2").attr(
+        "src",
+        "https://www.youtube.com/embed/" + response.items[1].id.videoId
+      );
     });
   }
 
@@ -70,8 +79,8 @@ $(document).ready(function () {
     $.ajax({
       url: `https://trackapi.nutritionix.com/v2/natural/nutrients`,
       headers: {
-        "x-app-id": "8e63a8a3",
-        "x-app-key": "64294de991310089661a16d9cd168ca1",
+        "x-app-id": "263ad9b6",
+        "x-app-key": "125ecacb1d54725e8b4bc6cdea6f0e53",
         "Content-Type": "application/json",
       },
       type: "POST",
@@ -178,21 +187,23 @@ $(document).ready(function () {
 
   function exercise(varExercise) {
     //var text = document.getElementById('inputlg').value;
-     //$("#searchExercise").val();
-     console.log(varExercise);
+    //$("#searchExercise").val();
+    console.log(varExercise);
+    query = "1 mile run 10 min swiming, 10 jumping jacks, 10 squads";
     // Ajax call to API and then appends the returned info to the food log.
     $.ajax({
       url: `https://trackapi.nutritionix.com/v2/natural/exercise`,
       headers: {
-        "x-app-id": "8e63a8a3",
-        "x-app-key": "64294de991310089661a16d9cd168ca1",
+        "x-app-id": "263ad9b6",
+        "x-app-key": "125ecacb1d54725e8b4bc6cdea6f0e53",
         "Content-Type": "application/json",
       },
       type: "POST",
       dataType: "json",
       processData: false,
       data: JSON.stringify({
-        query: varExercise,
+        // query: varExercise,
+        query: query,
         gender: gender,
         weight_kg: weight,
         height_cm: height,
@@ -370,47 +381,33 @@ $(document).ready(function () {
     }
   });
 
+  $("input[type=radio]").change(function () {
+    var optionYoutube;
 
+    var choosenExercise = $(this).val();
 
-
-$("input[type=radio]").change( function(){
-
-var optionYoutube;
-
-var choosenExercise = $(this).val();
-
-if (choosenExercise === "Walking") {
-  choosenExercise = choosenExercise + " 10 minutes"
-  optionYoutube = "how to walk";
-} 
-else if (choosenExercise === "Jogging"){
-  choosenExercise = choosenExercise + " 10 minutes"
-  optionYoutube = "how to Jog";
-}
-else if (choosenExercise === "Running"){
-  choosenExercise = choosenExercise + "1 mile"
-  optionYoutube = "how to run";
-}
-else if (choosenExercise === "Swimming"){
-  choosenExercise = choosenExercise + " 10 minutes"
-  optionYoutube = "how to swim";
-}
-else if (choosenExercise === "Bicycling"){
-  choosenExercise = choosenExercise + " 10 minutes"
-  optionYoutube = "how to ride a bicycle";
-}
-else{
-  choosenExercise = choosenExercise + " 10 minutes"
-  optionYoutube = "how to jump rope";
-}
-console.log(choosenExercise);
-console.log(optionYoutube);
-// exercise(choosenExercise);
-youtube(optionYoutube);
-
-})
-
-
-
-
+    if (choosenExercise === "Walking") {
+      choosenExercise = choosenExercise + " 10 minutes";
+      optionYoutube = "how to walk";
+    } else if (choosenExercise === "Jogging") {
+      choosenExercise = choosenExercise + " 10 minutes";
+      optionYoutube = "how to Jog";
+    } else if (choosenExercise === "Running") {
+      choosenExercise = choosenExercise + "1 mile";
+      optionYoutube = "how to run";
+    } else if (choosenExercise === "Swimming") {
+      choosenExercise = choosenExercise + " 10 minutes";
+      optionYoutube = "how to swim";
+    } else if (choosenExercise === "Bicycling") {
+      choosenExercise = choosenExercise + " 10 minutes";
+      optionYoutube = "how to ride a bicycle";
+    } else {
+      choosenExercise = choosenExercise + " 10 minutes";
+      optionYoutube = "how to jump rope";
+    }
+    console.log(choosenExercise);
+    console.log(optionYoutube);
+    exercise(choosenExercise);
+    //youtube(optionYoutube);
+  });
 });
