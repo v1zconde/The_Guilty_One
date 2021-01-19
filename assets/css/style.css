@@ -62,14 +62,6 @@
     background-image: url();
   }
 
-
-.blog
-
-
-
-
-
-
   .social:hover {
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
@@ -121,10 +113,17 @@ color: #4099FF;
 
 .foot {
   display: block;
-  color: #4099FF;
-  
 }
 
 .gordo{
   color: red;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }

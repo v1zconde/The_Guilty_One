@@ -1,7 +1,6 @@
 body {
   height: auto;
-  
-    background-color: #DADED4;
+  background-color: #DADED4;
 
 }
 
@@ -71,15 +70,15 @@ form .form-icons {
 }
 
 footer {
-position: fixed;
-bottom: 0;
-width: 100%;
-text-align: center;
-left: 0;
-padding-top: 10px;
-background-color:  #3C403D;
-color: #4099FF;
-}
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  background-color:  #3C403D;
+  padding: 5px;
+  color: #4099FF;
+  }
 
   
   .title-bar-center {

@@ -1,5 +1,6 @@
 $(document).ready(function () {
   $(document).foundation();
+  //global variables
   var height = 0;
   var weight = 0;
   var age = 0;
@@ -25,7 +26,7 @@ $(document).ready(function () {
   var satFatTotal;
   var extraWeight = 0;
   var calIntake = 0;
-  var divCalIntake = $("#caloric-intake")
+  var divCalIntake = $("#caloric-intake");
   $(".flex-video").hide();
   $("#section-exercise").hide();
   mapboxgl.accessToken =
@@ -36,22 +37,16 @@ $(document).ready(function () {
     enableHighAccuracy: true,
   });
 
-  // weather();
-  // youtube();
-  // exercise();
-  // bmi();
-  // dailyCalory();
-  // idealWeight();
 
   init();
-
+//timer for the time
   var interval = setInterval(function () {
     var momentNow = moment();
     $("#time").html(
       momentNow.format("MMMM DD YYYY") + " " + momentNow.format("hh:mm:ss A")
     );
   }, 100);
-
+//function init to call the geolocation
   function init() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(weather);
@@ -60,7 +55,7 @@ $(document).ready(function () {
       console.log("Geolocation is not supported by this browser.");
     }
   }
-
+//get the weather api
   function weather(location) {
     var weatherKey = "0672c5c44771cae78024eb3855e55f10";
 
@@ -80,7 +75,7 @@ $(document).ready(function () {
       console.log(weatherAPi);
     });
   }
-
+//get videos on youtube for the youtube part
   function youtube(query) {
     var youtubeKey = "AIzaSyDqKuO43bR2rpGY_lJE6QlWQ39tCXUBLqQ";
     console.log(query);
@@ -108,7 +103,7 @@ $(document).ready(function () {
       );
     });
   }
-
+//get the nutritional values for the foods
   function nutritionix(foodCalorie) {
     // Ajax call to API and then appends the returned info to the food log.
     $.ajax({
@@ -214,10 +209,9 @@ $(document).ready(function () {
         );
         console.log(calIntake);
         console.log(allValues.sumCalories);
-        if (allValues.sumCalories > calIntake){
+        if (allValues.sumCalories > calIntake) {
           divCalIntake.addClass("gordo");
-        }
-        else{
+        } else {
           divCalIntake.removeClass("gordo");
         }
         newFood.append(closeBtn);
@@ -226,13 +220,11 @@ $(document).ready(function () {
       },
     });
   }
-
+//function to ask for exercises api in nutritionix
   function exercise(varExercise) {
-    //var text = document.getElementById('inputlg').value;
-    //$("#searchExercise").val();
+  
     console.log(varExercise);
-    
-    // Ajax call to API and then appends the returned info to the food log.
+
     $.ajax({
       url: `https://trackapi.nutritionix.com/v2/natural/exercise`,
       headers: {
@@ -253,12 +245,20 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response);
         var exer = $("<p>");
-        exer.text("To burn extra " + extraWeight + " Calories" + ", " + choosenExercise + ", " + response.exercises[0].nf_calories)
+        exer.text(
+          "To burn extra " +
+            extraWeight +
+            " Calories" +
+            ", " +
+            choosenExercise +
+            ", " +
+            response.exercises[0].nf_calories
+        );
         $("#msgExercise").append(exer);
       },
     });
   }
-
+//api call for the bmi
   function bmi(age, height, weight) {
     var settings = {
       async: true,
@@ -312,7 +312,7 @@ $(document).ready(function () {
       idealWeight(gender, height, weight);
     });
   }
-
+//api call for the ideal weight
   function idealWeight(gender, height, weight) {
     var settings = {
       async: true,
@@ -340,7 +340,7 @@ $(document).ready(function () {
       bmiSection.append(idealWeight);
     });
   }
-
+//button for look with user info
   $("#userinfo-btn").on("click", function (event) {
     event.preventDefault();
     var heightFeet = $("#feet-input").val() * 12;
@@ -358,7 +358,7 @@ $(document).ready(function () {
 
     bmi(age, height, weight);
   });
-
+//button for add foods
   $("#meal-btn").on("click", function (event) {
     event.preventDefault();
     console.log("button");
@@ -366,7 +366,7 @@ $(document).ready(function () {
     $("#section-exercise").show();
     nutritionix(foodCalorie);
   });
-
+//delete button for the foods added
   $("#list-food").on("click", ".close-button", function (event) {
     event.preventDefault();
     allValues.sumCalories =
@@ -401,9 +401,7 @@ $(document).ready(function () {
     fatTotal.text("Total Fat: " + allValues.fat.toFixed(2));
     satFatTotal.text("Saturated Fat: " + allValues.saturatedFat.toFixed(2));
 
-    divCalIntake.text(
-      "Caloric Intake: " + allValues.sumCalories.toFixed(2)
-    );
+    divCalIntake.text("Caloric Intake: " + allValues.sumCalories.toFixed(2));
     console.log($(this).parent());
     $(this).parent().remove();
     if (listFood.children().length === 0) {
@@ -421,19 +419,17 @@ $(document).ready(function () {
     console.log(calIntake);
     console.log(allValues.sumCalories);
 
-    if (allValues.sumCalories > calIntake){
+    if (allValues.sumCalories > calIntake) {
       divCalIntake.addClass("gordo");
       extraWeight = allValues.sumCalories - calIntake;
-    }
-    else{
+    } else {
       divCalIntake.removeClass("gordo");
     }
   });
-
+//radio button to choose the exercise you want to see videos.
   $("fieldset input[type=radio]").change(function (event) {
     event.preventDefault();
     var optionYoutube;
-
     choosenExercise = $(this).val();
     if (choosenExercise === "Walking") {
       choosenExercise = choosenExercise + " 10 minutes";
@@ -456,21 +452,21 @@ $(document).ready(function () {
     }
     console.log(choosenExercise);
     console.log(optionYoutube);
-     exercise(choosenExercise);
-     youtube(optionYoutube);
+    exercise(choosenExercise);
+    youtube(optionYoutube);
   });
-
+//function for the map
   function successLocation(position) {
     console.log(position);
     lat = position.coords.latitude;
     lng = position.coords.longitude;
     setupMap([lng, lat]);
   }
-
+//function to send location to the map in case they dont share their location.
   function errorLocation() {
     setupMap([-81.379234, 28.538336]); // add geo for orlando when they say no (right now is london)
   }
-
+//function to set up the map to center.
   function setupMap(center) {
     var map = new mapboxgl.Map({
       container: "map",
@@ -479,17 +475,35 @@ $(document).ready(function () {
       zoom: 12,
     });
 
+    
+    https://api.mapbox.com/geocoding/v5/mapbox.places/chipotle.json?proximity=-81.379234,28.538336&access_token=pk.eyJ1IjoidjF6Y29uZGUiLCJhIjoiY2tqdTMyZXRtMGJiaDMycGw5dGEyeXhpMCJ9.b_yBWiWPazINgTelgLeUjg
+
     var nav = new mapboxgl.NavigationControl();
     map.addControl(nav);
+    var markerHouse = new mapboxgl.Marker().setLngLat([lng, lat]).setPopup(new mapboxgl.Popup({ offset: 25 })
+    .setHTML("<h3>Current Location</h3>")).addTo(map);
+    var mapQuery = "https://api.mapbox.com/geocoding/v5/mapbox.places/gym.json?proximity="+ lng +"," + lat + "&access_token=" + mapboxgl.accessToken;
+    $.ajax({
+      url: mapQuery,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
+      var mapLng = 0;
+      var mapLat = 0;
 
-    var marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
+      for (i = 0; i <5 ; i++){
+        mapLng = response.features[i].geometry.coordinates[0];
+        mapLat = response.features[i].geometry.coordinates[1];
+        var marker = new mapboxgl.Marker()
+        .setLngLat([mapLng, mapLat])
+        .setPopup(new mapboxgl.Popup({ offset: 25 })
+        .setHTML("<h3>" + response.features[i].text + "</h3><p>" + response.features[i].place_name + "</p>"))
+        .addTo(map);
+      }
+    });
   }
-
 
   $("bmiForm").on("click", function (event) {
     event.preventDefault();
-  })
-
-
-
+  });
 });
