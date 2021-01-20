@@ -475,16 +475,15 @@ $(document).ready(function () {
       zoom: 12,
     });
 
-    
     https://api.mapbox.com/geocoding/v5/mapbox.places/chipotle.json?proximity=-81.379234,28.538336&access_token=pk.eyJ1IjoidjF6Y29uZGUiLCJhIjoiY2tqdTMyZXRtMGJiaDMycGw5dGEyeXhpMCJ9.b_yBWiWPazINgTelgLeUjg
 
     var nav = new mapboxgl.NavigationControl();
     map.addControl(nav);
     var markerHouse = new mapboxgl.Marker().setLngLat([lng, lat]).setPopup(new mapboxgl.Popup({ offset: 25 })
     .setHTML("<h3>Current Location</h3>")).addTo(map);
-    var mapQuery = "https://api.mapbox.com/geocoding/v5/mapbox.places/gym.json?proximity="+ lng +"," + lat + "&access_token=" + mapboxgl.accessToken;
+    var mapQueryGym = "https://api.mapbox.com/geocoding/v5/mapbox.places/gym.json?proximity="+ lng +"," + lat + "&access_token=" + mapboxgl.accessToken;
     $.ajax({
-      url: mapQuery,
+      url: mapQueryGym,
       method: "GET"
     }).then(function(response) {
       console.log(response);
@@ -494,14 +493,36 @@ $(document).ready(function () {
       for (i = 0; i <5 ; i++){
         mapLng = response.features[i].geometry.coordinates[0];
         mapLat = response.features[i].geometry.coordinates[1];
-        var marker = new mapboxgl.Marker()
+        new mapboxgl.Marker({color: "red"})
         .setLngLat([mapLng, mapLat])
         .setPopup(new mapboxgl.Popup({ offset: 25 })
         .setHTML("<h3>" + response.features[i].text + "</h3><p>" + response.features[i].place_name + "</p>"))
         .addTo(map);
       }
+
+      var mapQueryPark = "https://api.mapbox.com/geocoding/v5/mapbox.places/park.json?proximity="+ lng +"," + lat + "&access_token=" + mapboxgl.accessToken;
+      $.ajax({
+        url: mapQueryPark,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var mapLng = 0;
+        var mapLat = 0;
+  
+        for (i = 0; i <5 ; i++){
+          mapLng = response.features[i].geometry.coordinates[0];
+          mapLat = response.features[i].geometry.coordinates[1];
+          new mapboxgl.Marker({color: "green"})
+          .setLngLat([mapLng, mapLat])
+          .setPopup(new mapboxgl.Popup({ offset: 25 })
+          .setHTML("<h3>" + response.features[i].text + "</h3><p>" + response.features[i].place_name + "</p>"))
+          .addTo(map);
+        };
+
+      });
+
     });
-  }
+  };
 
   $("bmiForm").on("click", function (event) {
     event.preventDefault();
